@@ -45,11 +45,22 @@ addCityForm.addEventListener('submit', (event) => {
     .then((response) => response.json())
     .then((data) => {
         // settimeout
-        Swal.fire({
-            icon: data.answer,
-            title: data.answer,
-            html: data?.errors,
-          });
+        setTimeout( () => {
+            Swal.fire({
+                icon: data.answer,
+                title: data.answer,
+                html: data?.errors,
+              });
+            // reset form if answer is success
+            if (data.answer ==='success') {
+                addCityForm.reset();
+            }
+            // unlock button 
+            btnAddSubmit.textContent = 'Add City';
+            btnAddSubmit.disabled = false;
+        }, 1000);
+
+       
     });
 
 });
