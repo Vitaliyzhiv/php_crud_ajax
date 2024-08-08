@@ -128,4 +128,14 @@ if (isset($data['action']) && $data['action'] == 'delete_city') {
     die;
 }
 
+// Search 
+if (isset($data['search'])) {
+    // trim search 
+    $search = trim($data['search']);
+    $cities = search_cities($search);
+    // connect to template
+    require_once 'views/search.tpl.php';
+    die();
+}
+
   

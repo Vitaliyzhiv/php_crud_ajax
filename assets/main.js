@@ -84,8 +84,8 @@ divTable.addEventListener('click', (event) => {
 });
 
 // Add city
-addCityForm = document.getElementById('addCityForm');
-btnEditSubmit = document.getElementById('btn-edit-submit');
+const addCityForm = document.getElementById('addCityForm');
+const btnEditSubmit = document.getElementById('btn-edit-submit');
 
 
 // Add city form
@@ -127,8 +127,8 @@ addCityForm.addEventListener('submit', (event) => {
 });
 
 // Edit city form
-editCityForm = document.getElementById('editCityForm');
-btnAddSubmit = document.getElementById('btn-add-submit');
+const editCityForm = document.getElementById('editCityForm');
+const btnAddSubmit = document.getElementById('btn-add-submit');
 
 editCityForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -177,3 +177,54 @@ editCityForm.addEventListener('submit', (event) => {
 
 
 });
+
+// Search
+const searchField = document.getElementById('search');
+const loader = document.getElementById('loader');
+const clearSearch = document.getElementById('clear-search');
+// Add input event listener
+searchField.addEventListener('input', (event) => {
+    // get value from input
+    let search = event.target.value.trim();
+    // Check search length, must be greater than 2
+    if (search.length > 2) {
+        // show loader
+        loader.classList.remove('d-none');
+        // get cities
+        fetch('actions.php', {
+            method: 'POST',
+            body: JSON.stringify({ search: search })
+        })
+            .then((response) => response.text())
+            .then((data) => {
+                // show loader
+                loader.style.display = 'block';
+                // Add timeout
+                setTimeout(() => {
+                    // Insert data into HTML
+                    divTable.innerHTML = data;
+                    // Create an instance of Mark with the divTable element, enabling dropdown functionality
+                    let instance = new Mark(divTable);
+                    // Highlight the search term within the divTable element using the mark function
+                    instance.mark(search);
+                    // hide loader
+                    loader.style.display = 'none';
+                }, 500);
+            });
+        }
+
+});
+
+// Clear search and return start view
+clearSearch.addEventListener('click', () => {
+    searchField.value = '';
+    divTable.innerHTML = '';
+    fetch('actions.php', {
+        method: 'POST',
+        body: JSON.stringify({ page: 1 })
+    })
+        .then((response) => response.text())
+        .then((data) => {
+            divTable.innerHTML = data;
+        });
+})
