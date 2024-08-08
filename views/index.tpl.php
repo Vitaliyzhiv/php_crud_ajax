@@ -82,19 +82,23 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="" method="post">
-                            <div class="form-group">
-                                <small>City Name</small>
-                                <input type="text" class="form-control" name="name" value="<?php echo $city['name']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <small>Population</small>
-                                <input type="number" class="form-control" name="population" min="1" step="1" value="1">
+                        <form id="editCityForm" method="post">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="editName" class="form-label">City name</label>
+                                    <input type="text" class="form-control" name="name" id="editName" >
+                                </div>
+                                <div class="mb-3">  
+                                    <label for="editPopulation" class="form-label">Population</label>
+                                    <input type="number" name="population" class="form-control" id="editPopulation" placeholder="City population">  
+                                    <input type="hidden" name="editCity">
+                                    <input type="hidden" name="id" id="id">
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                            <button type="submit" class="btn btn-primary" name="add">Сохранить</button>
+                            <button type="submit" class="btn btn-primary" id="btn-edit-submit">Сохранить</button>
                         </form>
                     </div>
                 </div>
@@ -106,7 +110,7 @@
         <!-- jQuery first, then Popper.js, then Bootstrap JS --><script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" crossorigin="anonymous"> </script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="assets/main.js"></script>
     </body>
 

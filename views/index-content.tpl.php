@@ -13,14 +13,14 @@
                                 <?php foreach ($cities as $city): ?>
                                     <tr id="city-<?= $city['id'] ?>">
                                         <th scope="row"><?= $city['id'] ?></th>
-                                        <td><?= $city['name'] ?></td>
-                                        <td><?= $city['population'] ?></td>
+                                        <td class="name"><?= $city['name'] ?></td>
+                                        <td class="population"><?= $city['population'] ?></td>
                                         <td>
                                             <button href="" class="btn btn-info btn-edit" data-bs-toggle="modal" data-bs-target="#editCity" data-id="<?= $city['id'] ?>">
-                                                <i class="fa fa-edit"></i>
+                                                <i class="fa fa-edit" data-id="<?= $city['id'] ?>"></i>
                                             </button>
                                             <button href="" class="btn btn-danger btn-delete" data-target="#deleteCity" data-id="<?= $city['id'] ?>">
-                                                <i class="fa fa-trash-alt"></i>
+                                                <i class="fa fa-trash-alt" data-id="<?= $city['id'] ?>"></i>
                                             </button>
                                         </td>
                                     </tr>
